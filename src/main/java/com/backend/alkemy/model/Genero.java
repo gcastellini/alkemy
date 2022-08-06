@@ -15,6 +15,7 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int genID;
 	private String nombre;
+	private byte[] imagen;
 	@OneToMany(mappedBy = "filmId", fetch = FetchType.EAGER)
 	private Set<Peliculas> peliculas;
 
@@ -24,5 +25,11 @@ public class Genero {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+	public byte[] getImagen() {
+		return imagen;
+	}
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
 
 }

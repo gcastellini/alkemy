@@ -19,6 +19,7 @@ public class Personaje {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int persId;
+	private byte[] imagen;
 	private String nombre;
 	private String edad;
 	private String peso;
@@ -64,6 +65,14 @@ public class Personaje {
 	    public void setHistoria(String historia) {
 	        this.historia = historia;
 	    }
+
+		public byte[] getImagen() {
+			return imagen;
+		}
+
+		public void setImagen(byte[] imagen) {
+			this.imagen = imagen;
+		}
 	    
 	    
 	    

@@ -23,6 +23,7 @@ public class Peliculas {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int filmId;
+	private byte[] imagen;
 	private String titulo;
 	private Date fechaCreacion;
 	private int calificacion;
@@ -71,6 +72,14 @@ public class Peliculas {
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
+
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
     
 
 }
