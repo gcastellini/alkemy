@@ -25,10 +25,10 @@ public class Personaje {
 	private String peso;
 	private String historia;
 	@ManyToMany(mappedBy = "personajes", fetch = FetchType.EAGER)
-	private Set<Peliculas> pelicula;
+	private Set<Peliculas> movie;
 	
 	public Set<Peliculas> getPeliculas(){
-		return pelicula;
+		return movie;
 	}
     
 	 public long getPersId() {
@@ -42,7 +42,7 @@ public class Personaje {
 	        return nombre;
 	    }
 
-	    public void setNombre(String nombre) {
+	    public void setName(String nombre) {
 	        this.nombre = nombre;
 	    }
 	    
