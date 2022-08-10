@@ -27,9 +27,6 @@ public class Personaje {
 	@ManyToMany(mappedBy = "personajes", fetch = FetchType.EAGER)
 	private Set<Peliculas> movie;
 	
-	public Set<Peliculas> getPeliculas(){
-		return movie;
-	}
     
 	 public long getPersId() {
 	        return persId;
