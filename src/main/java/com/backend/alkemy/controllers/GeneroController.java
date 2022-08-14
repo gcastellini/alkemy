@@ -1,5 +1,6 @@
 package com.backend.alkemy.controllers;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,5 +32,10 @@ public class GeneroController {
   @PostMapping("/generos")
   public Genero agregar(@RequestBody Genero g){
       return genserv.add(g);
+  }
+  
+  @DeleteMapping(path = {"/generos/{id}"})
+  public Genero deleteG(@PathVariable("id") int  id){
+      return genserv.deleteG(id);
   }
 }

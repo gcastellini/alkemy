@@ -19,6 +19,14 @@ public class Genero {
 	@OneToMany(mappedBy = "filmId", fetch = FetchType.EAGER)
 	private Set<Peliculas> peliculas;
 
+	public int getGenID() {
+		return genID;
+	}
+	
+	public void setGenID(int genID) {
+		this.genID=genID;
+	}
+	
 	public String getNombre() {
         return nombre;
     }
