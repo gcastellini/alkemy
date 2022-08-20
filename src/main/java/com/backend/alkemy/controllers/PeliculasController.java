@@ -39,7 +39,7 @@ public class PeliculasController {
 		   }
 	   }
 		   else {   for (int i = 0 ; i < pelirepo.findAll().size(); i++) {
-			   if ((pelirepo.findAll().get(i).getTitulo().equals(nombre)) || (pelirepo.findAll().get(i).getGenero().getGenID().equals(idGenero))) {
+			   if ((pelirepo.findAll().get(i).getTitulo().equals(nombre)) ) {
 		peliculas.add(Arrays.asList(pelirepo.findAll().get(i).getTitulo(),pelirepo.findAll().get(i).getTitulo()));
 			   
   }

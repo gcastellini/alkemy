@@ -1,5 +1,7 @@
 package com.backend.alkemy.model;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,10 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Personaje {
+public class Personaje implements Serializable{
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int persId;
@@ -24,10 +27,10 @@ public class Personaje {
 	private String edad;
 	private String peso;
 	private String historia;
-	@ManyToMany(mappedBy = "personajes", fetch = FetchType.EAGER)
-	private Set<Peliculas> movie;
 	
-    
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="pk.personaje", cascade =CascadeType.ALL)
+	private Set<PeliculasPersonaje> pelipersonaje = new HashSet<PeliculasPersonaje>(0);
+	
 	 public long getPersId() {
 	        return persId;
 	    }
