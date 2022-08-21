@@ -15,19 +15,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.alkemy.model.Peliculas;
+import com.backend.alkemy.model.PeliculasPersonaje;
 import com.backend.alkemy.model.Personaje;
+import com.backend.alkemy.repositories.PeliPersonajeRepo;
 import com.backend.alkemy.repositories.PeliculaRepo;
+import com.backend.alkemy.services.PeliPersServ;
 import com.backend.alkemy.services.PeliculasServ;
+import com.backend.alkemy.services.PersonajeServ;
 
 @RestController
 @RequestMapping
 public class PeliculasController {
   private PeliculasServ peliserv;
   private PeliculaRepo pelirepo;
+  private PeliPersonajeRepo pelipersrepo;
+  private PeliPersServ pelipersserv;
   
-  public PeliculasController (PeliculasServ peliserv, PeliculaRepo pelirepo) {
+  public PeliculasController (PeliculasServ peliserv, PeliculaRepo pelirepo, PeliPersonajeRepo pelipersrepo, PersonajeServ persserv) {
 	  this.peliserv=peliserv;
 	  this.pelirepo=pelirepo;
+	  this.pelipersrepo=pelipersrepo;
+	  this.pelipersserv=pelipersserv;
   }
   
   @GetMapping("/movies/{id}")
@@ -46,6 +54,27 @@ public Peliculas agregar(@RequestBody Peliculas f){
     return peliserv.add(f);
 }
 
+@PostMapping("/movies/{id}/character/{id}")
+public Peliculas agregarPersonaje(@PathVariable("id") int id,@RequestBody PeliculasPersonaje pp) {
+      for (int i=0; i< pelipersrepo.findAll().size(); i++) {
+    	  if (pelipersrepo.findAll().get(i).getPelicula().getFilmId() == id) {
+    		  pelipersserv.add(pp);
+    	  }
+      }
+      return peliserv.listarId(id);
+}
+
+@DeleteMapping(path="/movies/{id}/character/{id}")
+public Peliculas deletePersonaje(@PathVariable("id")int id) {
+	for (int i=0; i< pelipersrepo.findAll().size(); i++) {
+  	  if (pelipersrepo.findAll().get(i).getPelicula().getFilmId() == id) {
+  		  pelipersserv.deletePP(id);
+  	  }
+}
+	return peliserv.listarId(id);
+}
+
+	
 @DeleteMapping(path = {"/movies/{id}"})
 public Peliculas deleteF(@PathVariable("id") int  id){
     return peliserv.deleteF(id);

@@ -10,5 +10,8 @@ import com.backend.alkemy.model.Personaje;
 
 public interface PeliPersonajeRepo extends JpaRepository <PeliculasPersonaje,Long>{
 	List<PeliculasPersonaje> findAll();
+	PeliculasPersonaje findBypk (int pk);
+	PeliculasPersonaje save(PeliculasPersonaje pp);
+	void delete(PeliculasPersonaje pp);
 	
 }
